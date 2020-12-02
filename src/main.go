@@ -49,9 +49,8 @@ func PostRetrieve(c *gin.Context) {
 	})
 }
 
-func main() {
+func serverSetup() *gin.Engine {
 	fmt.Println("Yo!")
-
 	r := gin.Default()
 	r.GET("/", HomePage)
 	r.POST("/", PostHomePage)
@@ -59,5 +58,9 @@ func main() {
 	r.GET("/query", QueryStrings)	// /query?name=anthony?age=25
 	r.GET("/path/:name/:age", PathParams)	// /path/anthony/25/
 	// PUT, DEL, PATCH
-	r.Run()
+	return r
+}
+
+func main() {
+	serverSetup().Run()
 }
